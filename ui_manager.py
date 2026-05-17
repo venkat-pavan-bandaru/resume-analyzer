@@ -85,7 +85,12 @@ class UIManager:
     def load_file(self):
         """Handle file loading for resume analysis."""
         file_path = filedialog.askopenfilename(initialdir="/", title="Select file",
-                                               filetypes=(("documents", "*.docx;*.pdf"), ("all files", "*.*")))
+                                               filetypes=(
+                                                   ("Document files", "*.docx *.pdf"),
+                                                   ("Word documents", "*.docx"),
+                                                   ("PDF files", "*.pdf"),
+                                                   ("All files", "*.*")
+                                               ))
         if file_path:
             self.display_resume(file_path)
             self.process_file(file_path)

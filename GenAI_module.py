@@ -1,13 +1,20 @@
+import os
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage
 from langchain.chains import LLMChain
 from langchain.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
+from dotenv import load_dotenv
 from file_handling import FileHandler
 
 class ChatBot:
     def __init__(self):
         """Initialize the ChatBot with specific model parameters."""
-        self.llm = ChatOpenAI(model_name='gpt-4', temperature=0.5, openai_api_key="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")
+        load_dotenv()
+        self.llm = ChatOpenAI(
+            model_name='gpt-4',
+            temperature=0.5,
+            openai_api_key=os.getenv("OPENAI_API_KEY")
+        )
 
     def setup_chat_model(self):
         """Set up the chat model with a template for processing resumes."""
